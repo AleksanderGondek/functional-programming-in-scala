@@ -1,2 +1,2 @@
 # functional-programming-in-scala
-Red Book exercises done for my own amusement
+[Red Book](https://www.manning.com/books/functional-programming-in-scala) exercises and notes, done for my own amusement.
