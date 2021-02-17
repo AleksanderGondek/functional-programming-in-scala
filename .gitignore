@@ -18,3 +18,6 @@ project
 # Metals
 .metals
 .bloop
+
+# Notes
+site

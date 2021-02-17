@@ -19,6 +19,7 @@ pkgs.mkShell {
     curlFull
     glibcLocales 
     jdk
+    mkdocs
     sbt
     busybox # always last
   ];

@@ -1,0 +1,12 @@
+site_name: 'FP in Scala notes'
+site_description: 'Random notes from The Red Book'
+site_url: null
+
+site_author: 'Aleksander Gondek'
+theme: readthedocs
+
+repo_url: 'https://github.com/AleksanderGondek/functional-programming-in-scala'
+repo_name: 'GitHub'
+
+docs_dir: 'notes'
+use_directory_urls: false

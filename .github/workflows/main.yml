@@ -10,3 +10,5 @@ jobs:
     - uses: cachix/install-nix-action@v12
     - name: Run tests
       run: "nix-shell --pure --run 'sbt test'"
+    - name: Ensure notes are being created
+      run: "nix-shell --pure --run 'mkdocs build'"
