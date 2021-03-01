@@ -4,12 +4,18 @@ scalaVersion := "2.13.3"
 lazy val fpInScala = Project(id = "fp-in-scala", base = file("."))
   .settings(settings)
   .aggregate(
-    chapter2
+    chapter2,
+    chapter3
   )
 
 lazy val chapter2 = Project(id = "chapter-2", base = file("chapter-2"))
   .settings(
     name := "chapter-2",
+    settings
+  )
+lazy val chapter3 = Project(id = "chapter-3", base = file("chapter-3"))
+  .settings(
+    name := "chapter-3",
     settings
   )
 
