@@ -17,6 +17,7 @@ title: Notes
 * function literal; array literal == Array(1,2,3)
 * anonymous function: (Type, Type) => Boolean = (x,y) => x == y
 * partial application of a function: take function with n parameters and transform it into a function with some of its params predefined (i.e. (A, (A,B) => C): B => C)
+* function curring = 
 
 # Declaring function as a value
 
