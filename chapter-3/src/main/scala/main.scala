@@ -112,6 +112,15 @@ object List {
       (all, x) => Cons(x, all)
     )
   }
+
+  // Exercise 3.13
+  def foldLeftViaFoldRight[A,B](l: List[A], z: B)(f: (B,A) => B): B = {
+    foldRight(l, (b:B) => b)((a,g) => b => g(f(b,a)))(z)
+  }    
+
+  def foldRightViaFoldLeft[A,B](l: List[A], z: B)(f: (A,B) => B): B = {
+    foldLeft(reverse(l), z)((b,a) => f(a,b))
+  }    
 }
 
 object Main {
