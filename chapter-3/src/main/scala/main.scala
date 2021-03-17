@@ -140,6 +140,13 @@ object List {
       (head, tail) => Cons(head+1, tail)
     )
   }
+
+  // Exercise 3.17
+  def stringify(l: List[Double]): List[String] = {
+    foldRightViaFoldLeft(l, List[String]())(
+      (head, tail) => Cons(head.toString(), tail)
+    )
+  }
 }
 
 object Main {
@@ -204,5 +211,8 @@ object Main {
 
     println("// Exercise 3.16")
     println(List.transformPlusOne(List(1,2,3,4,5)))
+
+    println("// Exercise 3.17")
+    println(List.stringify(List(2.0, 3.0, 4.0)))
   }
 }
