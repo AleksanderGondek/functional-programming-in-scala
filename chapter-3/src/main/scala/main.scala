@@ -133,6 +133,13 @@ object List {
   def myLittleFlatten[A](l: List[List[A]]): List[A] = {
     foldLeft(l, List[A]())(append)
   }
+
+  // Exercise 3.16
+  def transformPlusOne(l: List[Int]): List[Int] = {
+    foldRightViaFoldLeft(l, List[Int]())(
+      (head, tail) => Cons(head+1, tail)
+    )
+  }
 }
 
 object Main {
@@ -194,5 +201,8 @@ object Main {
 
     println("// Exercise 3.15")
     println(List.myLittleFlatten(List(List(5,6,7), List(8,9,0))))
+
+    println("// Exercise 3.16")
+    println(List.transformPlusOne(List(1,2,3,4,5)))
   }
 }
