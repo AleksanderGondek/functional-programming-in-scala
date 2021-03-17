@@ -167,6 +167,16 @@ object List {
       }
     )
   }
+
+  // Exercise 3.20
+  def flatMap[A,B](as: List[A])(f: A => List[B]): List[B] = {
+    List.myLittleFlatten(List.map(as)(f))
+  }
+
+  // Exercise 3.21
+  def filterViaFlatMap[A](as: List[A])(f: A => Boolean): List[A] = {
+    List.flatMap(as)(x => if (f(x)) List(x) else List())
+  }
 }
 
 object Main {
@@ -239,6 +249,12 @@ object Main {
     println(List.map(List(1,2,3,4))(x => x + 1))
 
     println("// Exercise 3.19")
+    println(List.filter(List(1,2,3,4,5,6,7,8,9))(x => x % 2 == 0))
+
+    println("// Exercise 3.20")
+    println(List.flatMap(List(1,2,3))(i => List(i,i)))
+
+    println("// Exercise 3.21")
     println(List.filter(List(1,2,3,4,5,6,7,8,9))(x => x % 2 == 0))
   }
 }
