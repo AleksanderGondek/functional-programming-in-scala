@@ -154,6 +154,19 @@ object List {
       (head, tail) => Cons(f(head), tail)
     )
   }
+
+  // Exercise 3.19
+  def filter[A](as: List[A])(f: A => Boolean): List[A] = {
+    foldRightViaFoldLeft(as, List[A]())(
+      (head, tail) => {
+        if(f(head)) {
+          Cons(head, tail)
+        } else {
+          tail
+        }
+      }
+    )
+  }
 }
 
 object Main {
@@ -224,5 +237,8 @@ object Main {
 
     println("// Exercise 3.18")
     println(List.map(List(1,2,3,4))(x => x + 1))
+
+    println("// Exercise 3.19")
+    println(List.filter(List(1,2,3,4,5,6,7,8,9))(x => x % 2 == 0))
   }
 }
