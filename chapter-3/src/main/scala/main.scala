@@ -177,6 +177,15 @@ object List {
   def filterViaFlatMap[A](as: List[A])(f: A => Boolean): List[A] = {
     List.flatMap(as)(x => if (f(x)) List(x) else List())
   }
+
+  // Exercise 3.22
+  def addPairs(as: List[Int], at: List[Int]): List[Int] = {
+    (as, at) match {
+      case (_, Nil) => Nil
+      case (Nil, _) => Nil
+      case(Cons(as_head, as_tail), Cons(at_head, at_tail)) => Cons(as_head+at_head, addPairs(as_tail, at_tail))
+    }
+  }
 }
 
 object Main {
