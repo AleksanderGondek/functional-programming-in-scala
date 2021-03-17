@@ -120,7 +120,14 @@ object List {
 
   def foldRightViaFoldLeft[A,B](l: List[A], z: B)(f: (A,B) => B): B = {
     foldLeft(reverse(l), z)((b,a) => f(a,b))
-  }    
+  }
+
+  // Exercise 3.14
+  def append[A](a1: List[A], a2: List[A]): List[A] = {
+    foldRightViaFoldLeft(a1, a2)(
+      Cons(_,_)
+    )
+  }
 }
 
 object Main {
@@ -176,5 +183,8 @@ object Main {
     println(List.reverse(List()))
     println(List.reverse(List(1)))
     println(List.reverse(List(1,2,3)))
+
+    println("!!!!!")
+    println(List.append(List(1,2,3), List(4,5,6)))
   }
 }
