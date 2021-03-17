@@ -147,6 +147,13 @@ object List {
       (head, tail) => Cons(head.toString(), tail)
     )
   }
+
+  // Exercise 3.18
+  def map[A,B](as: List[A])(f: A => B): List[B] = {
+    foldRightViaFoldLeft(as, List[B]())(
+      (head, tail) => Cons(f(head), tail)
+    )
+  }
 }
 
 object Main {
@@ -214,5 +221,8 @@ object Main {
 
     println("// Exercise 3.17")
     println(List.stringify(List(2.0, 3.0, 4.0)))
+
+    println("// Exercise 3.18")
+    println(List.map(List(1,2,3,4))(x => x + 1))
   }
 }
