@@ -128,6 +128,11 @@ object List {
       Cons(_,_)
     )
   }
+
+  // Exercise 3.15
+  def myLittleFlatten[A](l: List[List[A]]): List[A] = {
+    foldLeft(l, List[A]())(append)
+  }
 }
 
 object Main {
@@ -184,7 +189,10 @@ object Main {
     println(List.reverse(List(1)))
     println(List.reverse(List(1,2,3)))
 
-    println("!!!!!")
+    println("// Exercise 3.14")
     println(List.append(List(1,2,3), List(4,5,6)))
+
+    println("// Exercise 3.15")
+    println(List.myLittleFlatten(List(List(5,6,7), List(8,9,0))))
   }
 }
