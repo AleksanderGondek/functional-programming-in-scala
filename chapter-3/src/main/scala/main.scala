@@ -265,5 +265,8 @@ object Main {
 
     println("// Exercise 3.21")
     println(List.filter(List(1,2,3,4,5,6,7,8,9))(x => x % 2 == 0))
+
+    println("// Exercise 3.22")
+    println(List.addPairs(List(1,1,1), List(1,1,1)))
   }
 }
