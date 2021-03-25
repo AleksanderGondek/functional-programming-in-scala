@@ -186,6 +186,15 @@ object List {
       case(Cons(as_head, as_tail), Cons(at_head, at_tail)) => Cons(as_head+at_head, addPairs(as_tail, at_tail))
     }
   }
+
+  // Exercise 3.23
+  def zipWith[A](xr: List[A], xs: List[A])(f: (A, A) => A): List[A] = {
+    (xr, xs) match {
+      case (_, Nil) => Nil
+      case (Nil, _) => Nil
+      case(Cons(xr_head, xr_tail), Cons(xs_head, xs_tail)) => Cons(f(xr_head, xs_head), zipWith(xr_tail, xs_tail)(f))
+    }
+  }
 }
 
 object Main {
@@ -268,5 +277,9 @@ object Main {
 
     println("// Exercise 3.22")
     println(List.addPairs(List(1,1,1), List(1,1,1)))
+
+    println("// Exercise 3.23")
+    def substract(a: Int, b: Int) = a-b
+    println(List.zipWith(List(1,1,1), List(1,1,1))(substract))
   }
 }
