@@ -224,6 +224,25 @@ object CList {
 }
 
 
+sealed trait CTree[+A]
+case class CLeaf[A](value: A) extends CTree[A]
+case class CBranch[A](left: CTree[A], right: CTree[A]) extends CTree[A]
+
+object CTree {
+  def size[A](tree: CTree[A]): Int = {
+    def loop(t: CTree[A]): Int = {
+      t match {
+        case CLeaf(_) => 1
+        case CBranch(l,r) => {
+          1 + loop(l) + loop(r)
+        }
+      }
+    }
+
+    loop(tree)
+  }
+}
+
 object Main {
   def main(args: Array[String]): Unit = {
     println("// Exercise 3.1")
@@ -320,5 +339,23 @@ object Main {
       CList(1,2,3,4,5,6,7,8,9,0),
       CList(7,8,9)
     ))
+
+    println("// Exercise 3.25")
+    val test = CBranch(
+      CBranch(CLeaf("a"), CLeaf("b")),
+      CBranch(CLeaf("c"), CLeaf("d"))
+    )
+    println(CTree.size(test))
+    val testTwo = CBranch(
+      CBranch(
+        CBranch(CLeaf("a"), CLeaf("b")),
+        CBranch(CLeaf("c"), CLeaf("d"))
+      ),
+      CBranch(
+        CBranch(CLeaf("e"), CLeaf("f")),
+        CBranch(CLeaf("g"), CLeaf("h"))
+      ),
+    )
+    println(CTree.size(testTwo))
   }
 }

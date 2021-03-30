@@ -12,3 +12,5 @@ title: Notes
 * Companion object - object with same name as data type
 * match case has no fallover (like switch?)
 * Data sharing in functional data structures -> objects are re-used, as there is no risk in doing so
+
+* ADT - algebraic data type; data type defined by one or more data constructors
