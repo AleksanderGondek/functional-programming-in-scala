@@ -229,12 +229,27 @@ case class CLeaf[A](value: A) extends CTree[A]
 case class CBranch[A](left: CTree[A], right: CTree[A]) extends CTree[A]
 
 object CTree {
+  println("// Exercise 3.25")
   def size[A](tree: CTree[A]): Int = {
     def loop(t: CTree[A]): Int = {
       t match {
         case CLeaf(_) => 1
         case CBranch(l,r) => {
           1 + loop(l) + loop(r)
+        }
+      }
+    }
+
+    loop(tree)
+  }
+
+  println("// Exercise 3.26")
+  def max(tree: CTree[Int]): Int = {
+    def loop(t: CTree[Int]): Int = {
+      t match {
+        case CLeaf(i) => i
+        case CBranch(l,r) => {
+          loop(l) max loop(r)
         }
       }
     }
@@ -357,5 +372,12 @@ object Main {
       ),
     )
     println(CTree.size(testTwo))
+
+    println("// Exercise 3.26")
+    val testThree = CBranch(
+      CBranch(CLeaf(1), CLeaf(2)),
+      CBranch(CLeaf(3), CLeaf(4))
+    )
+    println(CTree.max(testThree))
   }
 }
