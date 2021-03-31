@@ -256,6 +256,20 @@ object CTree {
 
     loop(tree)
   }
+
+  println("// Exercise 3.27")
+  def depth[A](tree: CTree[A]): Int = {
+    def loop(t: CTree[A]): Int = {
+      t match {
+        case CLeaf(_) => 1
+        case CBranch(l,r) => {
+          (1 + loop(l)) max (1 + loop(r))
+        }
+      }
+    }
+
+    loop(tree)
+  }
 }
 
 object Main {
@@ -379,5 +393,8 @@ object Main {
       CBranch(CLeaf(3), CLeaf(4))
     )
     println(CTree.max(testThree))
+
+    println("// Exercise 3.27")
+    println(CTree.depth(test))
   }
 }
