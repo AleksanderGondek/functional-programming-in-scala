@@ -272,12 +272,12 @@ object CTree {
   }
 
   println("// Exercise 3.28")
-  def map[A,B](tree: CTree[A])(f: A => B): List[B] = {
-    def loop(t: CTree[A]): List[B] = {
+  def map[A,B](tree: CTree[A])(f: A => B): CTree[B] = {
+    def loop(t: CTree[A]): CTree[B] = {
       t match {
-        case CLeaf(x) => f(x) :: Nil
+        case CLeaf(x) => CLeaf(f(x))
         case CBranch(l,r) => {
-          loop(l) ::: loop(r)
+          CBranch(loop(l), loop(r))
         }
       }
     }
