@@ -270,6 +270,20 @@ object CTree {
 
     loop(tree)
   }
+
+  println("// Exercise 3.28")
+  def map[A,B](tree: CTree[A])(f: A => B): List[B] = {
+    def loop(t: CTree[A]): List[B] = {
+      t match {
+        case CLeaf(x) => f(x) :: Nil
+        case CBranch(l,r) => {
+          loop(l) ::: loop(r)
+        }
+      }
+    }
+
+    loop(tree)
+  }
 }
 
 object Main {
@@ -396,5 +410,8 @@ object Main {
 
     println("// Exercise 3.27")
     println(CTree.depth(test))
+
+    println("// Exercise 3.28")
+    println(CTree.map(testThree)(n => n + 1))
   }
 }
