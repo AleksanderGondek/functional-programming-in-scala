@@ -229,7 +229,7 @@ case class CLeaf[A](value: A) extends CTree[A]
 case class CBranch[A](left: CTree[A], right: CTree[A]) extends CTree[A]
 
 object CTree {
-  println("// Exercise 3.25")
+  // Exercise 3.25
   def size[A](tree: CTree[A]): Int = {
     def loop(t: CTree[A]): Int = {
       t match {
@@ -243,7 +243,7 @@ object CTree {
     loop(tree)
   }
 
-  println("// Exercise 3.26")
+  // Exercise 3.26
   def max(tree: CTree[Int]): Int = {
     def loop(t: CTree[Int]): Int = {
       t match {
@@ -257,7 +257,7 @@ object CTree {
     loop(tree)
   }
 
-  println("// Exercise 3.27")
+  // Exercise 3.27
   def depth[A](tree: CTree[A]): Int = {
     def loop(t: CTree[A]): Int = {
       t match {
@@ -271,7 +271,7 @@ object CTree {
     loop(tree)
   }
 
-  println("// Exercise 3.28")
+  // Exercise 3.28
   def map[A,B](tree: CTree[A])(f: A => B): CTree[B] = {
     def loop(t: CTree[A]): CTree[B] = {
       t match {
@@ -283,6 +283,37 @@ object CTree {
     }
 
     loop(tree)
+  }
+
+  // Exercise 3.29
+  def fold[A,B](tree: CTree[A])(f: A => B)(wrap: (B,B) => B): B = {
+    def loop(t: CTree[A]): B = {
+      t match {
+        case CLeaf(x) => f(x)
+        case CBranch(l,r) => {
+          wrap(loop(l), loop(r))
+        }
+      }
+    }
+
+    loop(tree)
+  }
+
+  def sizeViaFold[A](tree: CTree[A]): Int = {
+    fold(tree)(_ => 1)( (a,b) => 1 + a + b)
+  }
+
+  def maxViaFold(tree: CTree[Int]): Int = {
+    fold(tree)(a => a)( (a,b) => a max b)
+  }
+
+  def depthViaFold[A](tree: CTree[A]): Int = {
+    fold(tree)(_ => 1)( (a,b) => 1 + (a max b))
+  }
+
+  def mapViaFold[A,B](tree: CTree[A])(f: A => B): CTree[B] = {
+    // Notice forced type of CTree[B]!
+    fold(tree)(x => CLeaf(f(x)): CTree[B])( (a,b) => CBranch(a,b))
   }
 }
 
@@ -413,5 +444,16 @@ object Main {
 
     println("// Exercise 3.28")
     println(CTree.map(testThree)(n => n + 1))
+
+    println("// Exercise 3.29")
+    println("size via Fold:")
+    println(CTree.sizeViaFold(test))
+    println(CTree.sizeViaFold(testTwo))
+    println("max via Fold:")
+    println(CTree.maxViaFold(testThree))
+    println("depth via Fold:")
+    println(CTree.depthViaFold(test))
+    println("map via Fold:")
+    println(CTree.mapViaFold(testThree)(n => n + 1))
   }
 }
